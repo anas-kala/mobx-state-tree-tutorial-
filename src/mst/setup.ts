@@ -1,6 +1,7 @@
-import { applySnapshot, getSnapshot, onSnapshot } from "mobx-state-tree";
+import { onSnapshot } from "mobx-state-tree";
 import { RootModel } from "."
 
+// here we create an instance of the tree.
 export const setupRootStore = () => {
     const rootTree = RootModel.create({
         employer: {
@@ -10,8 +11,9 @@ export const setupRootStore = () => {
             employees: []
         }
     });
-    onSnapshot(rootTree,(snapshot)=>console.log('snapshot = ',snapshot));
-    const currentRootTree=getSnapshot(rootTree);
-    applySnapshot(rootTree,{...currentRootTree,employer:{...currentRootTree.employer,location:"Manhatten, NY"}});
-    return {rootTree};
+    // for making sure that the tree is working you can make the following snapshot:
+    onSnapshot(rootTree, (snapshot) => console.log('snapshot = ', snapshot));
+    // const currentRootTree=getSnapshot(rootTree);
+    // applySnapshot(rootTree,{...currentRootTree,employer:{...currentRootTree.employer,location:"Manhatten, NY"}});
+    return { rootTree };
 };

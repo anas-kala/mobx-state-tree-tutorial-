@@ -1,6 +1,7 @@
 import { Provider } from 'mobx-react';
 import React from 'react';
 import './App.css';
+import { EmployerComponent } from './components/Employer';
 import { setupRootStore } from './mst/setup';
 
 interface Props {
@@ -21,19 +22,17 @@ class App extends React.Component<Props, State> {
   }
 
   componentDidMount = () => {
-    const { rootTree } = setupRootStore()
-    this.setState({ rootTree })
+    const { rootTree } = setupRootStore();
+    this.setState({ rootTree });
   }
 
   render() {
-    const {rootTree}=this.state
+    const {rootTree}=this.state;
     if (!rootTree) return null;
 
     return (
       <Provider rootTree={rootTree}>
-        <div>
-          <p>Hi</p>
-        </div>
+        <EmployerComponent/>
       </Provider>
     );
   }
